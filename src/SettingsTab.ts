@@ -1,13 +1,12 @@
+import { Service } from "diod";
 import { App, PluginSettingTab, Setting } from "obsidian";
 
 import MyPlugin from "./main";
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
-
-	constructor(app: App, plugin: MyPlugin) {
+@Service()
+export class SettingsTab extends PluginSettingTab {
+	constructor(app: App, private readonly plugin: MyPlugin) {
 		super(app, plugin);
-		this.plugin = plugin;
 	}
 
 	display(): void {
@@ -23,11 +22,9 @@ export class SampleSettingTab extends PluginSettingTab {
 			.addText((text) =>
 				text
 					.setPlaceholder("Enter your secret")
-					.setValue(this.plugin.settings.mySetting)
+					.setValue(this.plugin.settingsStore.settings.setting)
 					.onChange(async (value) => {
-						console.log(`Secret: ${value}`);
-						this.plugin.settings.mySetting = value;
-						await this.plugin.saveSettings();
+						await this.plugin.settingsStore.updateSettings({ setting: value });
 					})
 			);
 	}

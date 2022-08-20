@@ -3,8 +3,8 @@
 	"name": "Sample Plugin",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "This is a sample plugin for Obsidian. This plugin demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
+	"description": "This is a sample plugin for Obsidian refactored from the official starter with some good practices.",
+	"author": "Isma Navarro",
+	"authorUrl": "https://ismanapa.com",
 	"isDesktopOnly": false
 }
