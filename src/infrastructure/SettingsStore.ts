@@ -1,3 +1,4 @@
+import { Service } from "diod";
 import { Plugin } from "obsidian";
 
 export interface Settings {
@@ -5,9 +6,10 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-	setting: "",
+	setting: "setting",
 };
 
+@Service()
 export class SettingsStore {
 	private _settings: Settings;
 

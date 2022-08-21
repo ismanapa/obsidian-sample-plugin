@@ -1,11 +1,15 @@
 import { Service } from "diod";
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, Plugin, PluginSettingTab, Setting } from "obsidian";
 
-import MyPlugin from "./main";
+import { SettingsStore } from "./infrastructure/SettingsStore";
 
 @Service()
 export class SettingsTab extends PluginSettingTab {
-	constructor(app: App, private readonly plugin: MyPlugin) {
+	constructor(
+		app: App,
+		private readonly plugin: Plugin,
+		private readonly settingsStore: SettingsStore
+	) {
 		super(app, plugin);
 	}
 
@@ -22,9 +26,9 @@ export class SettingsTab extends PluginSettingTab {
 			.addText((text) =>
 				text
 					.setPlaceholder("Enter your secret")
-					.setValue(this.plugin.settingsStore.settings.setting)
+					.setValue(this.settingsStore.settings.setting)
 					.onChange(async (value) => {
-						await this.plugin.settingsStore.updateSettings({ setting: value });
+						await this.settingsStore.updateSettings({ setting: value });
 					})
 			);
 	}
