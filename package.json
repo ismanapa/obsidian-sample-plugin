@@ -5,8 +5,10 @@
 	"main": "main.js",
 	"scripts": {
 		"dev": "node etc/esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node etc/version-bump.mjs && git add etc/manifest.json etc/versions.json"
+		"build": "tsc -noEmit -skipLibCheck && node etc/esbuild.config.mjs production",
+		"version": "node etc/version-bump.mjs && git add etc/manifest.json etc/versions.json",
+		"lint": "eslint --ignore-path .gitignore .",
+		"lint:fix": "eslint --fix --ignore-path .gitignore ."
 	},
 	"keywords": [],
 	"author": "",
